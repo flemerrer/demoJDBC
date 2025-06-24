@@ -1,0 +1,32 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="utf-8" />
+	<title>TODO</title>
+	<meta name="viewport" content="width=device-width" />
+</head>
+<body>
+<!-- ETAPE 2 -->
+<form method="post" th:action="@{/contact/save}" th:object="${contact}">
+    <label>Prénom <input th:field="*{prenom}" /></label><br/>
+    <label>Nom <input th:field="*{nom}" /></label><br/>
+    <button type="submit">Enregistrer</button>
+</form>
+
+<table>
+	<thead>
+		<tr>
+			<th>Prénom</th>
+			<th>Nom</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="contact:${contacts}" th:object="${contact}">
+			<td th:text="*{prenom}" ></td>
+			<td th:text="*{nom}" ></td>
+		</tr>
+	</tbody>
+</table>
+
+</body>
+</html>
