@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import fr.eni.demo.entities.Formateur;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.jupiter.api.MethodOrderer;
@@ -18,7 +19,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import fr.eni.demo.bo.Cours;
-import fr.eni.demo.bo.Formateur;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 @SpringBootTest
@@ -61,6 +61,7 @@ public class TestRowMapperAssociation {
 			// Association
 			Cours coursPrincipal = new Cours();
 			coursPrincipal.setId(rs.getLong("id_cours_principal"));
+			System.out.println(coursPrincipal);
 			f.getListeCours().add(coursPrincipal);
 
 			return f;

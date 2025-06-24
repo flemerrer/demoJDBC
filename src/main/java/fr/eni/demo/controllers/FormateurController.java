@@ -20,7 +20,7 @@ public class FormateurController {
 	@GetMapping("/")
 	public Object index() {
 		var mav = new ModelAndView("index");
-		mav.addObject("formateur", new fr.eni.demo.bo.Formateur());
+		mav.addObject("formateur", new fr.eni.demo.entities.Formateur());
 		mav.addObject("formateurs", formateurRepository.findAll());
 		return mav;
 	}

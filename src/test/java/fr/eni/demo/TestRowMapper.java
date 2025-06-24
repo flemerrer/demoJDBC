@@ -18,7 +18,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import fr.eni.demo.bo.Formateur;
+import fr.eni.demo.entities.Formateur;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
@@ -27,6 +27,16 @@ public class TestRowMapper {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	@Test
+	void init(){
+		jdbcTemplate.execute("""
+			CREATE TABLE IF NOT EXISTS FORMATEURS (
+				email NVARCHAR(200) PRIMARY KEY,
+				prenom NVARCHAR(250) NOT NULL,
+				nom NVARCHAR(250) NOT NULL);
+			""");
+	}
 
 	@Test
 	void test01_Update() {

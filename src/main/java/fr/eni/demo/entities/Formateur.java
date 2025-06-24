@@ -6,7 +6,9 @@ public class Formateur {
 
 	private String prenom;
 	private String nom;
+	private long id_cours_principal;
 	private Collection<Object> listeCours;
+	private String email;
 
 	public Formateur() {
 	}
@@ -42,4 +44,11 @@ public class Formateur {
 			" }";
 	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getEmail() {
+		return email;
+	}
 }
