@@ -1,13 +1,21 @@
 package fr.eni.demo.entities;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Formateur {
 
 	private String prenom;
 	private String nom;
-	private long id_cours_principal;
-	private Collection<Object> listeCours;
+	private Collection<Object> listeCours = new ArrayList();
+
+//	@NotBlank
+//	@Email
+//	@Pattern(regexp="^[@-_.]")
 	private String email;
 
 	public Formateur() {
@@ -50,5 +58,9 @@ public class Formateur {
 
 	public String getEmail() {
 		return email;
+	}
+
+	public void addCours(Object cours) {
+		this.listeCours.add(cours);
 	}
 }

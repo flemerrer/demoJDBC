@@ -1,4 +1,4 @@
-package fr.eni.demo;
+package fr.eni.demo.td3;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -61,8 +61,7 @@ public class TestRowMapperAssociation {
 			// Association
 			Cours coursPrincipal = new Cours();
 			coursPrincipal.setId(rs.getLong("id_cours_principal"));
-			System.out.println(coursPrincipal);
-			f.getListeCours().add(coursPrincipal);
+			f.addCours(coursPrincipal);
 
 			return f;
 		}

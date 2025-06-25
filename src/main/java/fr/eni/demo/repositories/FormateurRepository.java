@@ -15,12 +15,12 @@ public class FormateurRepository {
 
 	public FormateurRepository(NamedParameterJdbcTemplate jdbc) {
 		this.jdbc = jdbc;
-//		jdbc.getJdbcOperations().execute("""
-//			CREATE TABLE IF NOT EXISTS FORMATEURS (
-//				email NVARCHAR(200) PRIMARY KEY,
-//				prenom NVARCHAR(250) NOT NULL,
-//				nom NVARCHAR(250) NOT NULL);
-//			""");
+		jdbc.getJdbcOperations().execute("""
+			CREATE TABLE IF NOT EXISTS FORMATEURS (
+				email NVARCHAR(200) PRIMARY KEY,
+				prenom NVARCHAR(250) NOT NULL,
+				nom NVARCHAR(250) NOT NULL);
+			""");
 	}
 
 	public void insert(Formateur contact) {

@@ -1,4 +1,4 @@
-package fr.eni.demo;
+package fr.eni.demo.td3;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

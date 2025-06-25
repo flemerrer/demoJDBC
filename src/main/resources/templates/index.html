@@ -7,9 +7,10 @@
 </head>
 <body>
 <!-- ETAPE 2 -->
-<form method="post" th:action="@{/contact/save}" th:object="${contact}">
+<form method="post" th:action="@{/formateur/save}" th:object="${formateur}">
     <label>Prénom <input th:field="*{prenom}" /></label><br/>
     <label>Nom <input th:field="*{nom}" /></label><br/>
+	<label>Email <input th:field="*{email}" /></label><br/>
     <button type="submit">Enregistrer</button>
 </form>
 
@@ -18,12 +19,14 @@
 		<tr>
 			<th>Prénom</th>
 			<th>Nom</th>
+			<th>Email</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr th:each="contact:${contacts}" th:object="${contact}">
+		<tr th:each="formateur:${formateurs}" th:object="${formateur}">
 			<td th:text="*{prenom}" ></td>
 			<td th:text="*{nom}" ></td>
+			<td th:text="*{email}" ></td>
 		</tr>
 	</tbody>
 </table>
