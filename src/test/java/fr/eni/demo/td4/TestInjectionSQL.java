@@ -1,7 +1,6 @@
-package fr.eni.td4;
+package fr.eni.demo.td4;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
+import fr.eni.demo.entities.Formateur;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.jupiter.api.MethodOrderer;
@@ -9,10 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import fr.eni.demo.bo.Formateur;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
@@ -25,8 +25,8 @@ public class TestInjectionSQL {
 	// Imaginons une méthode qui prend en paramètre une valeur saisie qui représente
 	// l'email du formateur à rechercher
 	Formateur findByEmail(String email) {
-		// La méhtode crée une requête en concaténant la donnée
-		String sql = "SELECT * FROM [FORMATEURS] where email = " + email;
+		// La méthode crée une requête en concaténant la donnée
+		String sql = "SELECT * FROM FORMATEURS where email = " + email;
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Formateur.class));
 	}
 
@@ -35,17 +35,13 @@ public class TestInjectionSQL {
 		// Imaginons un écran avec un champ pour saisir l'email du formateur recherché
 		// Voici la chaîne de caractères que l'utilisateur a saisie : 'a';delete from FORMATEURS
 		String saisieUtilisateur = "'abaille@campus-eni.fr';delete from FORMATEURS";
-
-		Formateur f = findByEmail(saisieUtilisateur);
-		assertNotNull(f);
+		EmptyResultDataAccessException thrown = assertThrows(
+			EmptyResultDataAccessException.class,
+			() -> findByEmail(saisieUtilisateur));
 		logger.info("QueryForList");
-		logger.info(f);
-		
-		//Allez voir en base de données notre table : FORMATEURS
-		//Toutes les données de la table ont été supprimées
-		//Vous pouvez voir la requête exécutée dans les traces
+
 		//Aucune sécurité sur l'injection de script SQL dans une concaténation
-		//A BANIR
+		//À BANNIR
 	}
 
 }

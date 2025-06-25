@@ -1,7 +1,8 @@
-package fr.eni.td4;
+package fr.eni.demo.td4;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import fr.eni.demo.entities.Formateur;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.jupiter.api.MethodOrderer;
@@ -15,8 +16,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
-import fr.eni.demo.bo.Formateur;
-
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class TestNamedParameterJdbcTemplate {
@@ -28,7 +27,7 @@ public class TestNamedParameterJdbcTemplate {
 	// Insertion d"un formateur avec un PreparedStatement
 	int insertWithPreparedStatement(String email, String nom, String prenom) {
 		// utilisation d"un paramètre ?
-		String sql = "INSERT INTO [FORMATEURS] ([email],[nom],[prenom]) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO FORMATEURS (email,nom,prenom) VALUES (?, ?, ?)";
 
 		// Attention, il faut que l"ordre des paramètres correspondent exactement à
 		// l"ordre des ?
@@ -47,7 +46,7 @@ public class TestNamedParameterJdbcTemplate {
 	// Insertion d"un formateur avec un NamedParameterJdbcTemplate
 	int insertWithNamedParameterJdbcTemplate(String email, String nom, String prenom) {
 		// utilisation d"un paramètre ?
-		String sql = "INSERT INTO [FORMATEURS] ([email],[nom],[prenom]) VALUES (:email, :nom, :prenom)";
+		String sql = "INSERT INTO FORMATEURS (email,nom,prenom) VALUES (:email, :nom, :prenom)";
 
 		// Manipulation d"une Map <nom_paramètre, valeur>
 		// l"ordre n"est pas imposé
@@ -69,7 +68,7 @@ public class TestNamedParameterJdbcTemplate {
 	// Insertion d"un formateur avec un NamedParameterJdbcTemplate
 	int insertWithBO(Formateur f) {
 		// utilisation d"un paramètre ?
-		String sql = "INSERT INTO [FORMATEURS] ([email],[nom],[prenom]) VALUES (:email, :nom, :prenom)";
+		String sql = "INSERT INTO FORMATEURS (email,nom,prenom) VALUES (:email, :nom, :prenom)";
 
 		SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(f);
 

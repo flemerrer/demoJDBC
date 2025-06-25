@@ -17,20 +17,26 @@ public class FormateurRepository {
 		this.jdbc = jdbc;
 		jdbc.getJdbcOperations().execute("""
 			CREATE TABLE IF NOT EXISTS FORMATEURS (
-				email NVARCHAR(200) PRIMARY KEY,
+				email NVARCHAR(200) NOT NULL PRIMARY KEY,
 				prenom NVARCHAR(250) NOT NULL,
-				nom NVARCHAR(250) NOT NULL);
+				nom NVARCHAR(250) NOT NULL,
+				id_cours_principal int) ;
+			
+			CREATE TABLE IF NOT EXISTS COURS_ENI (
+			    id int PRIMARY KEY,
+			    titre NVARCHAR(250) NOT NULL,
+			    duree int NOT NULL);
 			""");
 	}
 
 	public void insert(Formateur contact) {
 		String sqlInsert = " INSERT INTO formateurs (email, prenom, nom ) VALUES ( :email, :prenom, :nom ) ";
-		jdbc.update( sqlInsert, new BeanPropertySqlParameterSource(contact) );
+		jdbc.update(sqlInsert, new BeanPropertySqlParameterSource(contact));
 	}
 
 	public List<Formateur> findAll() {
 		String sqlSelectAll = " SELECT email, prenom, nom FROM formateurs ";
-		return jdbc.getJdbcOperations().query( sqlSelectAll, new BeanPropertyRowMapper<>(Formateur.class) );
+		return jdbc.getJdbcOperations().query(sqlSelectAll, new BeanPropertyRowMapper<>(Formateur.class));
 	}
 
 }

@@ -21,6 +21,12 @@ public class Formateur {
 	public Formateur() {
 	}
 
+	public Formateur(String groussard, String thierry, String mail) {
+		this.nom = groussard;
+		this.prenom = thierry;
+		this.email = mail;
+	}
+
 	public Collection<Object> getListeCours() {
 		return listeCours;
 	}
